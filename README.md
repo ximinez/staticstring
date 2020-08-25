@@ -10,7 +10,7 @@ Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
 Building the projects in this solution one at a time. To enable parallel build, please add the "-m" switch.
-Build started 8/25/2020 11:46:08 AM.
+Build started 8/25/2020 12:03:26 PM.
 Project "C:\Dev\staticstring\staticstring.sln" on node 1 (default targets).
 ValidateSolutionConfiguration:
   Building solution configuration "Debug|x86".
@@ -44,16 +44,13 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:01.22
 
 C:\Dev\staticstring>Debug\staticstring.exe
-a: 00D69B34 test
-b: 00D69B34 test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
+a: 00EA9B34 test
+b: 00EA9B34 test
+a and b represent the same string: yes
+a and b have the same address: yes
 ```
 
 ## CMake
@@ -86,7 +83,7 @@ C:\Dev\staticstring\build>cmake ..
 -- Generating done
 -- Build files have been written to: C:/Dev/staticstring/build
 
-C:\Dev\staticstring\build>cmake --build . -- -m
+C:\Dev\staticstring\build>cmake --build .
 Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -97,19 +94,16 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Building Custom Rule C:/Dev/staticstring/CMakeLists.txt
 
 C:\Dev\staticstring\build>Debug\staticstring.exe
-a: 00007FF76FA7ADF0 test
-b: 00007FF76FA7ADE8 test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
-FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
-FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
+a: 00007FF635AEADF0 test
+b: 00007FF635AEADE8 test
+a and b represent the same string: yes
+a and b have the same address: ***NO***
 ```
 
 ### Only fails in Debug builds
 
 ```
-C:\Dev\staticstring\build>cmake --build . --config Release -- -m
+C:\Dev\staticstring\build>cmake --build . --config Release
 Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -120,13 +114,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Building Custom Rule C:/Dev/staticstring/CMakeLists.txt
 
 C:\Dev\staticstring\build>Release\staticstring.exe
-a: 00007FF614933280 test
-b: 00007FF614933280 test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
-
+a: 00007FF605AA2270 test
+b: 00007FF605AA2270 test
+a and b represent the same string: yes
+a and b have the same address: yes
 ```
 
