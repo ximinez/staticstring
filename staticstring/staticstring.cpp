@@ -1,9 +1,10 @@
 // staticstring.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#include <cstring>
 #include <iostream>
 
-constexpr char const *const test = "test";
+constexpr char const *test = "test";
 
 int main()
 {
@@ -15,5 +16,5 @@ int main()
   std::cout << "a and b represent the same string: "
             << (strcmp(a, b) == 0 ? "yes" : "***NO***") << std::endl;
   std::cout << "a and b have the same address: "
-            << (a == b ? "yes" : "***NO***"); // fails
+            << (a == b ? "yes" : "***NO***") << std::endl; // fails
 }
