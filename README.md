@@ -10,15 +10,12 @@ Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
 Building the projects in this solution one at a time. To enable parallel build, please add the "-m" switch.
-Build started 8/24/2020 8:24:01 PM.
+Build started 8/25/2020 11:46:08 AM.
 Project "C:\Dev\staticstring\staticstring.sln" on node 1 (default targets).
 ValidateSolutionConfiguration:
   Building solution configuration "Debug|x86".
 Project "C:\Dev\staticstring\staticstring.sln" (1) is building "C:\Dev\staticstring\staticstring.vcxproj" (2) on node 1
  (default targets).
-PrepareForBuild:
-  Creating directory "Debug\".
-  Creating directory "Debug\staticstring.tlog\".
 InitializeBuildStatus:
   Creating "Debug\staticstring.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
@@ -47,16 +44,16 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.70
+Time Elapsed 00:00:01.25
 
 C:\Dev\staticstring>Debug\staticstring.exe
-a: 004D9B34 test
-b: 004D9B34 test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(30): strcmp(a, b) == 0
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): a == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == jss::test.c_str()
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): jss::test.c_str() == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): jss::test.c_str() == jss::test.c_str()
+a: 00D69B34 test
+b: 00D69B34 test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
 ```
 
 ## CMake
@@ -100,12 +97,36 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Building Custom Rule C:/Dev/staticstring/CMakeLists.txt
 
 C:\Dev\staticstring\build>Debug\staticstring.exe
-a: 00007FF69BB3AC58 test
-b: 00007FF69BB3AFB0 test
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(30): strcmp(a, b) == 0
-FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(31): a == b
-FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == jss::test.c_str()
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): jss::test.c_str() == b
-passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): jss::test.c_str() == jss::test.c_str()
+a: 00007FF76FA7ADF0 test
+b: 00007FF76FA7ADE8 test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
+FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
+FAILED at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
+```
+
+### Only fails in Debug builds
+
+```
+C:\Dev\staticstring\build>cmake --build . --config Release -- -m
+Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Checking Build System
+  Building Custom Rule C:/Dev/staticstring/CMakeLists.txt
+  staticstring.cpp
+  staticstring.vcxproj -> C:\Dev\staticstring\build\Release\staticstring.exe
+  Building Custom Rule C:/Dev/staticstring/CMakeLists.txt
+
+C:\Dev\staticstring\build>Release\staticstring.exe
+a: 00007FF614933280 test
+b: 00007FF614933280 test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(31): strcmp(a, b) == 0
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(32): a == b
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(33): a == test
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(34): test == b
+passed at C:\Dev\staticstring\staticstring\staticstring.cpp(35): test == test
+
 ```
 

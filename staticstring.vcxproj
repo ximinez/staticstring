@@ -141,10 +141,6 @@
   <ItemGroup>
     <ClCompile Include="staticstring\staticstring.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="staticstring\jss.h" />
-    <ClInclude Include="staticstring\staticstring.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -19,12 +19,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="staticstring\jss.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="staticstring\staticstring.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>
